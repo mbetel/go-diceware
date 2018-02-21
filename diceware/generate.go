@@ -16,6 +16,7 @@ import (
 	"crypto/rand"
 	"math"
 	"math/big"
+	"unicode"
 )
 
 // Generate generates a list of the given number of words.
@@ -58,9 +59,17 @@ func in(list []string, val string) bool {
 	return false
 }
 
+func UcFirst(str string) string {
+	for i, v := range str {
+		return string(unicode.ToUpper(v)) + str[i+1:]
+	}
+	return ""
+}
+
+
 // WordAt retrieves the word at the given index.
 func WordAt(i int) string {
-	return words[i]
+	return UcFirst(nlwords[i])
 }
 
 // RollDie rolls a single 6-sided die and returns a value between [1,6].
